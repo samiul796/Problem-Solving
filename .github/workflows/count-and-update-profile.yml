@@ -1,0 +1,43 @@
+name: Count and Update Profile README
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  count-files:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4  # problem-solving রিপো ক্লোন করে
+      
+      - name: Count all .cpp files inside beecrowd folder recursively
+        run: |
+          COUNT=$(find ./beecrowd -type f -name "*.cpp" | wc -l)
+          echo "COUNT=$COUNT" >> $GITHUB_ENV
+      
+      - name: Update profile README in another repo
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.PROFILE_PAT }}
+          script: |
+            const owner = 'samiul796';
+            const repo = 'samiul796';   // profile README repo
+            const path = 'README.md';
+            
+            // প্রোফাইল রিপোর বর্তমান README পড়ি
+            const { data: file } = await github.rest.repos.getContent({
+              owner, repo, path
+            });
+            const content = Buffer.from(file.content, 'base64').toString('utf8');
+            
+            // প্লেসহোল্ডার প্রতিস্থাপন
+            const newContent = content.replace(/{{SOLVED_COUNT}}/g, process.env.COUNT);
+            
+            // আপডেট করা কমিট করি
+            await github.rest.repos.createOrUpdateFileContents({
+              owner, repo, path,
+              message: `Auto-update solved count to ${process.env.COUNT}`,
+              content: Buffer.from(newContent).toString('base64'),
+              sha: file.sha
+            });
