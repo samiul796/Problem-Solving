@@ -46,7 +46,7 @@ jobs:
           # -------------------------
           declare -A lang_map
 
-          for dir in $(find . -mindepth 2 -type d); do
+          for dir in $(find . -mindepth 2 -type d 2>/dev/null); do
 
             if [[ "$dir" == *".git"* ]]; then
               continue
@@ -56,7 +56,7 @@ jobs:
 
             case "$lang" in
               C|C++|Java|Python)
-                count=$(find "$dir" -mindepth 1 -type d | wc -l)
+                count=$(find "$dir" -mindepth 1 -type d 2>/dev/null | wc -l)
                 lang_map["$lang"]=$((lang_map["$lang"] + count))
                 ;;
               *)
@@ -81,37 +81,35 @@ jobs:
             print "";
 
             print "<div align=\"center\">";
-            print "";
 
-            print "<span style=\"font-size:20px; font-weight:bold;\">";
+            print "<span style=\"font-size:22px; font-weight:bold;\">";
             print "Platform-wise Solved";
             print "</span>";
             print "<br/><br/>";
 
             while ((getline line < "platform.txt") > 0) {
-              gsub(/•/, "", line);  # remove any existing bullet
-              print "<span style=\"font-size:16px;\">✔️ " line "</span><br/>";
+              gsub(/•/, "", line);
+              print "<span style=\"font-size:16px;\">✔ " line "</span><br/>";
             }
 
             print "<br/>";
 
-            print "<span style=\"font-size:20px; font-weight:bold;\">";
+            print "<span style=\"font-size:22px; font-weight:bold;\">";
             print "Language-wise Solved";
             print "</span>";
             print "<br/><br/>";
 
             while ((getline line < "language.txt") > 0) {
               gsub(/•/, "", line);
-              print "<span style=\"font-size:16px;\">✔️ " line "</span><br/>";
+              print "<span style=\"font-size:16px;\">✔ " line "</span><br/>";
             }
 
             print "<br/>";
 
-            print "<span style=\"font-size:22px; font-weight:bold;\">";
+            print "<span style=\"font-size:24px; font-weight:bold;\">";
             print "Total Solved: " total;
             print "</span>";
 
-            print "";
             print "</div>";
             print "";
 
@@ -129,7 +127,7 @@ jobs:
       - name: Commit changes
         run: |
           git config user.name "github-actions[bot]"
-          git config.user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
 
           git add README.md
 
