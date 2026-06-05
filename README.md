@@ -28,18 +28,16 @@
 <h2 style="font-size:26px; color:#7C4DFF;">🔴 LIVE STATISTICS DASHBOARD</h2>
 <h3>Platform-wise Solved</h3>
 <pre style="font-size:15px; line-height:1.6;">
-✔ Beecrowd           :     7
-✔ Leetcode           :     4
+✔ Beecrowd           :     3
 </pre>
 <h3>Language-wise Solved</h3>
 <pre style="font-size:15px; line-height:1.6;">
-✔ Java               :     2
-✔ C                  :     4
-✔ C++                :     5
+✔ C                  :     2
+✔ C++                :     1
 </pre>
 <div style="margin-top:20px;padding:20px;border-radius:12px;background:#0f0f1a;">
 <div style="font-size:14px;color:#aaa;">🕊️ 𝐓𝐎𝐓𝐀𝐋 𝐒𝐎𝐋𝐕𝐄𝐃 🕊️</div>
-<div style="font-size:60px;color:#00C2FF;font-weight:bold;">✅ 11</div>
+<div style="font-size:60px;color:#00C2FF;font-weight:bold;">✅ 3</div>
 </div>
 </div>
 <!-- END_STATS -->
