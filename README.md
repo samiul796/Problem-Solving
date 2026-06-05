@@ -4,7 +4,24 @@
 
 <!-- START_STATS -->
 
-Statistics will be generated automatically.
+## 📊 Statistics
+
+### Platform-wise
+
+- Beecrowd: 4
+- Codeforces: 0
+- LeetCode: 0
+
+### Language-wise
+
+- C: 2
+- C++: 2
+- Java: 0
+- Python: 0
+
+### Total Solved
+
+- 4
 
 <!-- END_STATS -->
 
