@@ -57,63 +57,51 @@ jobs:
 
           echo "TOTAL=$total" >> $GITHUB_ENV
 
-      - name: Update README
+      - name: Update README (STRICT REPLACE)
         run: |
-          awk -v total="$TOTAL" '
-          /<!-- START_STATS -->/ {
-            print;
-            print "";
+          START="<!-- START_STATS -->"
+          END="<!-- END_STATS -->"
 
-            print "<div align=\"center\">";
+          awk -v total="$TOTAL" -v start="$START" -v end="$END" '
+          $0 ~ start {
+            print $0
+            print ""
+            print "<div align=\"center\">"
+            print "<h2 style=\"font-size:26px; color:#7C4DFF;\">LIVE STATISTICS DASHBOARD</h2>"
 
-            print "<h2 style=\"font-size:26px; color:#7C4DFF; letter-spacing:1px;\">";
-            print "LIVE STATISTICS DASHBOARD";
-            print "</h2>";
-
-            # ---------------- PLATFORM ----------------
-            print "<h3 style=\"font-size:18px; margin-top:10px;\">Platform-wise Solved</h3>";
-            print "<pre style=\"font-size:15px; line-height:1.7;\">";
-
+            print "<h3>Platform-wise Solved</h3>"
+            print "<pre style=\"font-size:15px; line-height:1.6;\">"
             while ((getline line < "platform.txt") > 0) {
-              split(line, a, " ");
-              printf "✔ %-18s : %5s\n", a[1], a[2];
+              split(line,a," ")
+              printf "✔ %-18s : %5s\n", a[1], a[2]
             }
+            print "</pre>"
 
-            print "</pre>";
-
-            # ---------------- LANGUAGE ----------------
-            print "<h3 style=\"font-size:18px;\">Language-wise Solved</h3>";
-            print "<pre style=\"font-size:15px; line-height:1.7;\">";
-
+            print "<h3>Language-wise Solved</h3>"
+            print "<pre style=\"font-size:15px; line-height:1.6;\">"
             while ((getline line < "language.txt") > 0) {
-              split(line, a, " ");
-              printf "✔ %-18s : %5s\n", a[1], a[2];
+              split(line,a," ")
+              printf "✔ %-18s : %5s\n", a[1], a[2]
             }
+            print "</pre>"
 
-            print "</pre>";
+            print "<div style=\"margin-top:20px;padding:20px;border-radius:12px;background:#0f0f1a;\">"
+            print "<div style=\"font-size:14px;color:#aaa;\">TOTAL SOLVED</div>"
+            print "<div style=\"font-size:60px;color:#00C2FF;font-weight:bold;\">🧮 " total "</div>"
+            print "</div>"
 
-            # ---------------- TOTAL CARD ----------------
-            print "<div style=\"margin-top:25px; padding:22px; border-radius:14px; background:#0f0f1a; text-align:center;\">";
+            print "</div>"
 
-            print "<div style=\"font-size:16px; letter-spacing:3px; color:#aaa;\">";
-            print "TOTAL SOLVED";
-            print "</div>";
-
-            print "<div style=\"font-size:64px; font-weight:900; color:#00C2FF; line-height:1.2;\">";
-            print "🧮 " total;
-            print "</div>";
-
-            print "</div>";
-
-            print "</div>";
-
-            next;
+            skip=1
           }
 
-          /<!-- END_STATS -->/ {
-            print;
-            next;
+          $0 ~ end {
+            skip=0
+            print $0
+            next
           }
+
+          skip==1 { next }
 
           { print }
           ' README.md > temp.md && mv temp.md README.md
