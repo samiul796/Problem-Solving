@@ -86,7 +86,6 @@ jobs:
 
             print "";
             print "<div align=\"center\">";
-
             print "<div style=\"font-size:22px; font-weight:700; color:#00C2FF;\">";
             print "LIVE STATISTICS DASHBOARD";
             print "</div>";
