@@ -1,5 +1,14 @@
 # Beecrowd Problem Solving (C++)
 
+## 📊 Statistics
+
+<!-- START_STATS -->
+
+Statistics will be generated automatically.
+
+<!-- END_STATS -->
+
+
 🔢 **Total Solved:** 0
 
 ## Folder Structure
