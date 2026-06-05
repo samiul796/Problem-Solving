@@ -5,17 +5,13 @@ on:
     branches: [ main, master ]
   workflow_dispatch:
 
-# ⬇️ THIS IS THE FIX – grant write permissions
-permissions:
-  contents: write
-
 jobs:
   count-and-update:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Count all .cpp files inside "beecrowd (C++)"
         id: count
@@ -33,10 +29,11 @@ jobs:
         run: |
           sed -i "s/🔢 \*\*Total Solved:\*\* [0-9]*/🔢 **Total Solved:** ${{ env.TOTAL_SOLVED }}/" README.md
 
-      - name: Commit and push changes
+      - name: Commit and push changes using PAT
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/${{ github.repository }}
           git add README.md
           git diff --quiet && git diff --staged --quiet || git commit -m "Auto-update solved problem count [skip ci]"
           git push
