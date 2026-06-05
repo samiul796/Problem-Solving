@@ -1,6 +1,6 @@
 # Beecrowd Problem Solving (C++)
 
-🔢 **Total Solved:** 40
+🔢 **Total Solved:** 0
 
 ## Folder Structure
 - `beecrowd (C++)/Problems (1 to 30)/` - First 30 problems
