@@ -33,6 +33,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          # IMPORTANT: Change remote URL to use PAT token from secrets
           git remote set-url origin https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/${{ github.repository }}
           git add README.md
           git diff --quiet && git diff --staged --quiet || git commit -m "Auto-update solved problem count [skip ci]"
