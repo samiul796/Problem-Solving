@@ -25,6 +25,26 @@
 ## 🔴 LIVE STATISTICS DASHBOARD
 <!-- START_STATS -->
 
+<div align="center">
+<span style="font-size:22px; font-weight:bold;">
+Platform-wise Solved
+</span>
+<br/><br/>
+<span style="font-size:16px;">✔ Beecrowd: 4</span><br/>
+<br/>
+<span style="font-size:22px; font-weight:bold;">
+Language-wise Solved
+</span>
+<br/><br/>
+<span style="font-size:16px;">✔ C: 2</span><br/>
+<span style="font-size:16px;">✔ C++: 2</span><br/>
+<br/>
+<span style="font-size:24px; font-weight:bold;">
+Total Solved: 4
+</span>
+</div>
+
+
 <!-- END_STATS -->
 
 
