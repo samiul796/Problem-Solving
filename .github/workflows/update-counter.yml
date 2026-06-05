@@ -14,16 +14,21 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Generate statistics
         run: |
+          echo "Generating stats..."
+
           rm -f platform.txt language.txt
 
           total=0
 
-          # ---------------- PLATFORM ----------------
+          # -------------------------
+          # PLATFORM-wise
+          # -------------------------
           for platform in */ ; do
+
             case "$platform" in
               .github/|Templates/|.git/) continue ;;
             esac
@@ -36,11 +41,16 @@ jobs:
             fi
           done
 
-          # ---------------- LANGUAGE ----------------
+          # -------------------------
+          # LANGUAGE-wise
+          # -------------------------
           declare -A lang_map
 
           for dir in $(find . -mindepth 2 -type d); do
-            [[ "$dir" == *".git"* ]] && continue
+
+            if [[ "$dir" == *".git"* ]]; then
+              continue
+            fi
 
             lang=$(basename "$dir")
 
@@ -57,7 +67,7 @@ jobs:
 
           for key in "${!lang_map[@]}"; do
             if [ "${lang_map[$key]}" -gt 0 ]; then
-              printf "%-10s %d\n" "$key" "${lang_map[$key]}" >> language.txt
+              echo "$key: ${lang_map[$key]}" >> language.txt
             fi
           done
 
@@ -66,60 +76,76 @@ jobs:
       - name: Update README
         run: |
           awk -v total="$TOTAL" '
+          BEGIN {
+            in_block = 0;
+          }
+
           /<!-- START_STATS -->/ {
             print;
-            print "";
+            in_block = 1;
 
+            print "";
             print "<div align=\"center\">";
 
-            print "<h2 style=\"font-size:24px;\">🔴 LIVE STATISTICS DASHBOARD</h2>";
+            print "<div style=\"font-size:22px; font-weight:700; color:#00C2FF;\">";
+            print "LIVE STATISTICS DASHBOARD";
+            print "</div>";
+            print "<br/>";
+
+            print "<pre style=\"font-size:15px; text-align:left; display:inline-block;\">";
 
             # ---------------- PLATFORM ----------------
-            print "<h3 style=\"font-size:18px;\">Platform-wise Solved</h3>";
-            print "<pre style=\"font-size:15px; line-height:1.6;\">";
+            print "Platform-wise Solved";
+            print "--------------------------------------";
 
             while ((getline line < "platform.txt") > 0) {
               split(line, a, ":");
-              printf "✔ %-18s : %5s\n", a[1], a[2];
+              name = a[1];
+              val = a[2];
+
+              gsub(/ /, "", val);
+
+              printf "✔ %-18s : %5s\n", name, val;
             }
 
-            print "</pre>";
+            print "\nLanguage-wise Solved";
+            print "--------------------------------------";
 
             # ---------------- LANGUAGE ----------------
-            print "<h3 style=\"font-size:18px;\">Language-wise Solved</h3>";
-            print "<pre style=\"font-size:15px; line-height:1.6;\">";
-
             while ((getline line < "language.txt") > 0) {
-              split(line, a, " ");
-              printf "✔ %-18s : %5s\n", a[1], a[2];
+              split(line, a, ":");
+              name = a[1];
+              val = a[2];
+
+              gsub(/ /, "", val);
+
+              printf "✔ %-18s : %5s\n", name, val;
             }
 
             print "</pre>";
 
             # ---------------- TOTAL CARD ----------------
-            print "<div style=\"margin-top:25px; padding:20px; border-radius:14px; background:#0f0f1a;\">";
-
-            print "<div style=\"font-size:20px; letter-spacing:3px; color:#aaa; margin-bottom:8px;\">";
-            print "𝐓𝐎𝐓𝐀𝐋 𝐒𝐎𝐋𝐕𝐄𝐃";
-            print "</div>";
-
-            print "<div style=\"font-size:60px; font-weight:900; color:#7C4DFF; line-height:1;\">";
-            print "✅ " total;
+            print "<div style=\"margin-top:15px;\">";
+            print "<div style=\"font-size:14px; letter-spacing:2px; color:#aaa;\">TOTAL SOLVED</div>";
+            print "<div style=\"font-size:40px; font-weight:800; color:#7C4DFF;\">🧮 " total "</div>";
             print "</div>";
 
             print "</div>";
-
-            print "</div>";
+            print "";
 
             next;
           }
 
           /<!-- END_STATS -->/ {
+            in_block = 0;
             print;
             next;
           }
 
-          { print }
+          {
+            if (in_block == 1) next;
+            print;
+          }
           ' README.md > temp.md && mv temp.md README.md
 
       - name: Commit changes
@@ -129,6 +155,6 @@ jobs:
 
           git add README.md
 
-          git diff --cached --quiet || git commit -m "Auto update stats"
+          git diff --cached --quiet && echo "No changes" || git commit -m "📊 Auto update stats"
 
           git push
