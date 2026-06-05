@@ -14,12 +14,10 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
 
       - name: Generate statistics
         run: |
-          echo "Generating stats..."
-
           rm -f platform.txt language.txt
 
           total=0
@@ -46,7 +44,7 @@ jobs:
           # -------------------------
           declare -A lang_map
 
-          for dir in $(find . -mindepth 2 -type d 2>/dev/null); do
+          for dir in $(find . -mindepth 2 -type d); do
 
             if [[ "$dir" == *".git"* ]]; then
               continue
@@ -56,7 +54,7 @@ jobs:
 
             case "$lang" in
               C|C++|Java|Python)
-                count=$(find "$dir" -mindepth 1 -type d 2>/dev/null | wc -l)
+                count=$(find "$dir" -mindepth 1 -type d | wc -l)
                 lang_map["$lang"]=$((lang_map["$lang"] + count))
                 ;;
               *)
@@ -67,7 +65,7 @@ jobs:
 
           for key in "${!lang_map[@]}"; do
             if [ "${lang_map[$key]}" -gt 0 ]; then
-              echo "$key: ${lang_map[$key]}" >> language.txt
+              printf "%-10s %d\n" "$key" "${lang_map[$key]}" >> language.txt
             fi
           done
 
@@ -82,33 +80,37 @@ jobs:
 
             print "<div align=\"center\">";
 
-            print "<span style=\"font-size:22px; font-weight:bold;\">";
-            print "Platform-wise Solved";
-            print "</span>";
-            print "<br/><br/>";
+            print "<h2 style=\"font-size:24px; margin-bottom:10px;\">📊 Live Progress Dashboard</h2>";
+
+            # ---------------- PLATFORM ----------------
+            print "<h3 style=\"font-size:18px; margin-top:20px;\">Platform-wise Solved</h3>";
+            print "<pre style=\"font-size:15px; line-height:1.6;\">";
 
             while ((getline line < "platform.txt") > 0) {
-              gsub(/•/, "", line);
-              print "<span style=\"font-size:16px;\">✔ " line "</span><br/>";
+              split(line, a, ":");
+              printf "✔ %-18s : %5s\n", a[1], a[2];
             }
 
-            print "<br/>";
+            print "</pre>";
 
-            print "<span style=\"font-size:22px; font-weight:bold;\">";
-            print "Language-wise Solved";
-            print "</span>";
-            print "<br/><br/>";
+            # ---------------- LANGUAGE ----------------
+            print "<h3 style=\"font-size:18px; margin-top:20px;\">Language-wise Solved</h3>";
+            print "<pre style=\"font-size:15px; line-height:1.6;\">";
 
             while ((getline line < "language.txt") > 0) {
-              gsub(/•/, "", line);
-              print "<span style=\"font-size:16px;\">✔ " line "</span><br/>";
+              split(line, a, " ");
+              printf "✔ %-18s : %5s\n", a[1], a[2];
             }
 
-            print "<br/>";
+            print "</pre>";
 
-            print "<span style=\"font-size:24px; font-weight:bold;\">";
-            print "Total Solved: " total;
-            print "</span>";
+            # ---------------- TOTAL ----------------
+            print "<div style=\"margin-top:20px; padding:10px;\">";
+            print "<div style=\"font-size:14px; color:#888;\">TOTAL SOLVED</div>";
+            print "<div style=\"font-size:32px; font-weight:bold; color:#7C4DFF;\">";
+            print "🧮 " total;
+            print "</div>";
+            print "</div>";
 
             print "</div>";
             print "";
