@@ -82,39 +82,32 @@ jobs:
 
             print "<div align=\"center\">";
             print "";
-            print "<span style=\"font-size:26px; font-weight:bold;\">";
-            print "LIVE PROGRESS DASHBOARD";
-            print "</span>";
-            print "";
-            print "</div>";
-            print "";
 
-            print "<div align=\"center\">";
-            print "";
-
-            print "<span style=\"font-size:18px;\">";
+            print "<span style=\"font-size:20px; font-weight:bold;\">";
             print "Platform-wise Solved";
             print "</span>";
             print "<br/><br/>";
 
             while ((getline line < "platform.txt") > 0) {
-              print "<span style=\"font-size:14px;\">• " line "</span><br/>";
-            }
-
-            print "<br/>";
-
-            print "<span style=\"font-size:18px;\">";
-            print "Language-wise Solved";
-            print "</span>";
-            print "<br/><br/>";
-
-            while ((getline line < "language.txt") > 0) {
-              print "<span style=\"font-size:14px;\">• " line "</span><br/>";
+              gsub(/•/, "", line);  # remove any existing bullet
+              print "<span style=\"font-size:16px;\">✔️ " line "</span><br/>";
             }
 
             print "<br/>";
 
             print "<span style=\"font-size:20px; font-weight:bold;\">";
+            print "Language-wise Solved";
+            print "</span>";
+            print "<br/><br/>";
+
+            while ((getline line < "language.txt") > 0) {
+              gsub(/•/, "", line);
+              print "<span style=\"font-size:16px;\">✔️ " line "</span><br/>";
+            }
+
+            print "<br/>";
+
+            print "<span style=\"font-size:22px; font-weight:bold;\">";
             print "Total Solved: " total;
             print "</span>";
 
@@ -136,7 +129,7 @@ jobs:
       - name: Commit changes
         run: |
           git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config.user.email "github-actions[bot]@users.noreply.github.com"
 
           git add README.md
 
