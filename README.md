@@ -25,67 +25,6 @@
 ## 🔴 LIVE STATISTICS DASHBOARD
 <!-- START_STATS -->
 
-<div align="center">
-<h2 style="font-size:24px; margin-bottom:10px;">📊 Live Progress Dashboard</h2>
-<h3 style="font-size:18px; margin-top:20px;">Platform-wise Solved</h3>
-<pre style="font-size:15px; line-height:1.6;">
-✔ Beecrowd           :     4
-</pre>
-<h3 style="font-size:18px; margin-top:20px;">Language-wise Solved</h3>
-<pre style="font-size:15px; line-height:1.6;">
-✔ C                  :     2
-✔ C++                :     2
-</pre>
-<div style="margin-top:25px; padding:15px; border-radius:12px; background:#0f0f1a;">
-<div style="font-size:14px; letter-spacing:2px; color:#aaa; margin-bottom:5px;">
-TOTAL SOLVED
-</div>
-<div style="font-size:42px; font-weight:800; color:#7C4DFF;">
-🧮 4
-</div>
-</div>
-</div>
-
-
-<div align="center">
-<h2 style="font-size:24px; margin-bottom:10px;">📊 Live Progress Dashboard</h2>
-<h3 style="font-size:18px; margin-top:20px;">Platform-wise Solved</h3>
-<pre style="font-size:15px; line-height:1.6;">
-✔ Beecrowd           :     4
-</pre>
-<h3 style="font-size:18px; margin-top:20px;">Language-wise Solved</h3>
-<pre style="font-size:15px; line-height:1.6;">
-✔ C                  :     2
-✔ C++                :     2
-</pre>
-<div style="margin-top:20px; padding:10px;">
-<div style="font-size:14px; color:#888;">TOTAL SOLVED</div>
-<div style="font-size:32px; font-weight:bold; color:#7C4DFF;">
-🧮 4
-</div>
-</div>
-</div>
-
-
-<div align="center">
-<span style="font-size:22px; font-weight:bold;">
-Platform-wise Solved
-</span>
-<br/><br/>
-<span style="font-size:16px;">✔ Beecrowd: 4</span><br/>
-<br/>
-<span style="font-size:22px; font-weight:bold;">
-Language-wise Solved
-</span>
-<br/><br/>
-<span style="font-size:16px;">✔ C: 2</span><br/>
-<span style="font-size:16px;">✔ C++: 2</span><br/>
-<br/>
-<span style="font-size:24px; font-weight:bold;">
-Total Solved: 4
-</span>
-</div>
-
 
 <!-- END_STATS -->
 
