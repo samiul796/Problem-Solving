@@ -1,40 +1,118 @@
-name: Update Problem Counter
+name: Update Problem Statistics
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [ main ]
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
-  count-and-update:
+  stats:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
-      - name: Count all .cpp files inside "beecrowd (C++)"
-        id: count
+      - name: Generate statistics
+        id: stats
         run: |
-          folder="beecrowd (C++)"
-          if [ -d "$folder" ]; then
-            count=$(find "$folder" -type f -name "*.cpp" 2>/dev/null | wc -l)
-          else
-            count=0
+          echo "Calculating stats..."
+
+          # Platform counters
+          beecrowd=0
+          codeforces=0
+          leetcode=0
+
+          # Language counters
+          c=0
+          cpp=0
+          java=0
+          python=0
+
+          # Count platforms (problem folders)
+          if [ -d "Beecrowd" ]; then
+            beecrowd=$(find Beecrowd -mindepth 2 -type d | wc -l)
           fi
-          echo "TOTAL_SOLVED=$count" >> $GITHUB_ENV
-          echo "Found $count C++ files"
 
-      - name: Update README.md with the new count
+          if [ -d "Codeforces" ]; then
+            codeforces=$(find Codeforces -mindepth 2 -type d | wc -l)
+          fi
+
+          if [ -d "LeetCode" ]; then
+            leetcode=$(find LeetCode -mindepth 2 -type d | wc -l)
+          fi
+
+          # Count languages based on folder names
+          c=$(find . -type f -name "*.c"  | wc -l)
+          cpp=$(find . -type f -name "*.cpp" | wc -l)
+          java=$(find . -type f -name "*.java" | wc -l)
+          python=$(find . -type f -name "*.py" | wc -l)
+
+          total=$((beecrowd + codeforces + leetcode))
+
+          echo "BEECROWD=$beecrowd" >> $GITHUB_ENV
+          echo "CODEFORCES=$codeforces" >> $GITHUB_ENV
+          echo "LEETCODE=$leetcode" >> $GITHUB_ENV
+
+          echo "C=$c" >> $GITHUB_ENV
+          echo "CPP=$cpp" >> $GITHUB_ENV
+          echo "JAVA=$java" >> $GITHUB_ENV
+          echo "PYTHON=$python" >> $GITHUB_ENV
+
+          echo "TOTAL=$total" >> $GITHUB_ENV
+
+      - name: Update README
         run: |
-          sed -i "s/🔢 \*\*Total Solved:\*\* [0-9]*/🔢 **Total Solved:** ${{ env.TOTAL_SOLVED }}/" README.md
+          awk -v b="${BEECROWD}" \
+              -v c="${CODEFORCES}" \
+              -v l="${LEETCODE}" \
+              -v cc="${C}" \
+              -v cp="${CPP}" \
+              -v j="${JAVA}" \
+              -v p="${PYTHON}" \
+              -v t="${TOTAL}" '
+          BEGIN {inside=0}
+          /<!-- START_STATS -->/ {
+            print;
+            inside=1;
+            print "";
+            print "## 📊 Statistics";
+            print "";
+            print "### Platform-wise";
+            print "";
+            print "- Beecrowd: " b;
+            print "- Codeforces: " c;
+            print "- LeetCode: " l;
+            print "";
+            print "### Language-wise";
+            print "";
+            print "- C: " cc;
+            print "- C++: " cp;
+            print "- Java: " j;
+            print "- Python: " p;
+            print "";
+            print "### Total Solved";
+            print "";
+            print "- " t;
+            print "";
+            next
+          }
+          /<!-- END_STATS -->/ {
+            inside=0
+          }
+          inside==0 {print}
+          ' README.md > temp.md && mv temp.md README.md
 
-      - name: Commit and push changes using PAT
+      - name: Commit and push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          # IMPORTANT: Change remote URL to use PAT token from secrets
-          git remote set-url origin https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/${{ github.repository }}
+
           git add README.md
-          git diff --quiet && git diff --staged --quiet || git commit -m "Auto-update solved problem count [skip ci]"
+
+          git diff --cached --quiet && echo "No changes" || git commit -m "📊 Auto update statistics"
+
           git push
