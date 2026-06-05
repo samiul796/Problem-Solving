@@ -29,7 +29,6 @@ jobs:
           # -------------------------
           for platform in */ ; do
 
-            # ignore system folders
             case "$platform" in
               .github/|Templates/|.git/) continue ;;
             esac
@@ -43,13 +42,12 @@ jobs:
           done
 
           # -------------------------
-          # LANGUAGE-wise (clean + filtered)
+          # LANGUAGE-wise (clean)
           # -------------------------
           declare -A lang_map
 
           for dir in $(find . -mindepth 2 -type d); do
 
-            # ignore git system folders
             if [[ "$dir" == *".git"* ]]; then
               continue
             fi
@@ -75,38 +73,42 @@ jobs:
 
           echo "TOTAL=$total" >> $GITHUB_ENV
 
+      # =========================
+      # PREMIUM README INJECTION
+      # =========================
       - name: Update README
         run: |
           awk -v total="$TOTAL" '
           /<!-- START_STATS -->/ {
             print;
             print "";
-            print "## 📊 Statistics";
+            print "## 🔴 LIVE STATISTICS DASHBOARD";
+            print "";
+            print "> 📡 Auto-updated via GitHub Actions | Real-time repository scan";
+            print "";
+            print "### 📊 Platform Activity";
             print "";
 
-            print "### Platform-wise";
-            print "";
-
-            if (system("test -f platform.txt") == 0) {
-              while ((getline line < "platform.txt") > 0) {
-                print "- " line;
-              }
+            while ((getline line < "platform.txt") > 0) {
+              print "• " line;
             }
 
             print "";
-            print "### Language-wise";
+            print "### 💻 Language Activity";
             print "";
 
-            if (system("test -f language.txt") == 0) {
-              while ((getline line < "language.txt") > 0) {
-                print "- " line;
-              }
+            while ((getline line < "language.txt") > 0) {
+              print "• " line;
             }
 
             print "";
-            print "### Total Solved";
+            print "### ⚡ Total Solved";
             print "";
-            print "- " total;
+            print "```";
+            print "TOTAL PROBLEMS: " total;
+            print "```";
+            print "";
+            print "🟢 Status: LIVE • SYSTEM ACTIVE";
             print "";
             next;
           }
@@ -126,6 +128,6 @@ jobs:
 
           git add README.md
 
-          git diff --cached --quiet && echo "No changes" || git commit -m "📊 Auto update stats"
+          git diff --cached --quiet && echo "No changes" || git commit -m "📊 LIVE stats auto-update"
 
           git push
