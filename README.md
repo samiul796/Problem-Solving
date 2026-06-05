@@ -25,6 +25,34 @@
 ## 🔴 LIVE STATISTICS DASHBOARD
 <!-- START_STATS -->
 
+<div align="center">
+
+## 📊 LIVE PROGRESS DASHBOARD
+
+<span style="font-size:18px; color:#00C2FF;">
+Real-time automated tracking via GitHub Actions
+</span>
+
+</div>
+
+<div align="center">
+
+### 📍 Platform-wise Solved
+
+<b>• Beecrowd: 4</b><br/>
+
+### 💻 Language-wise Solved
+
+<b>• C: 2</b><br/>
+<b>• C++: 2</b><br/>
+
+### ⚡ Total Solved
+
+<span style="font-size:22px; color:#7C4DFF;"><b>🧮 4</b></span>
+
+</div>
+
+
 ## 📊 LIVE PROGRESS DASHBOARD
 
 ╭──────────────────────────────╮
