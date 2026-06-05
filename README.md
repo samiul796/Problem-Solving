@@ -1,7 +1,5 @@
 # Problem Solving
 
-## 📊 Statistics
-
 <!-- START_STATS -->
 
 ## 📊 Statistics
