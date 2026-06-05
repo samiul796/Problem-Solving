@@ -24,6 +24,27 @@
 
 <!-- START_STATS -->
 
+<div align="center">
+<h2 style="font-size:24px;">🔴 LIVE STATISTICS DASHBOARD</h2>
+<h3 style="font-size:18px;">Platform-wise Solved</h3>
+<pre style="font-size:15px; line-height:1.6;">
+✔ Beecrowd           :     4
+</pre>
+<h3 style="font-size:18px;">Language-wise Solved</h3>
+<pre style="font-size:15px; line-height:1.6;">
+✔ C                  :     2
+✔ C++                :     2
+</pre>
+<div style="margin-top:25px; padding:20px; border-radius:14px; background:#0f0f1a;">
+<div style="font-size:20px; letter-spacing:3px; color:#aaa; margin-bottom:8px;">
+𝐓𝐎𝐓𝐀𝐋 𝐒𝐎𝐋𝐕𝐄𝐃
+</div>
+<div style="font-size:60px; font-weight:900; color:#7C4DFF; line-height:1;">
+✅ 4
+</div>
+</div>
+</div>
+
 <!-- END_STATS -->
 
  
