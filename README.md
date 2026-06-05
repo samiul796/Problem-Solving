@@ -32,16 +32,16 @@ LIVE STATISTICS DASHBOARD
 <pre style="font-size:15px; text-align:left; display:inline-block;">
 Platform-wise Solved
 --------------------------------------
-✔ Beecrowd           :     5
+✔ Beecrowd           :     6
 
 Language-wise Solved
 --------------------------------------
 ✔ C                  :     2
-✔ C++                :     3
+✔ C++                :     4
 </pre>
 <div style="margin-top:15px;">
 <div style="font-size:14px; letter-spacing:2px; color:#aaa;">TOTAL SOLVED</div>
-<div style="font-size:40px; font-weight:800; color:#7C4DFF;">🧮 5</div>
+<div style="font-size:40px; font-weight:800; color:#7C4DFF;">🧮 6</div>
 </div>
 </div>
 
