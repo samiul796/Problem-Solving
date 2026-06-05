@@ -1,4 +1,4 @@
-name: Update Problem Statistics
+name: Dynamic Problem Statistics
 
 on:
   push:
@@ -13,106 +13,104 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v5
 
-      - name: Generate statistics
-        id: stats
+      - name: Generate dynamic stats
         run: |
-          echo "Calculating stats..."
+          echo "Generating stats..."
 
-          # Platform counters
-          beecrowd=0
-          codeforces=0
-          leetcode=0
+          rm -f platform.txt language.txt
 
-          # Language counters
-          c=0
-          cpp=0
-          java=0
-          python=0
+          total=0
 
-          # Count platforms (problem folders)
-          if [ -d "Beecrowd" ]; then
-            beecrowd=$(find Beecrowd -mindepth 2 -type d | wc -l)
-          fi
+          # -------------------------
+          # PLATFORM-wise (dynamic)
+          # -------------------------
+          for platform in */ ; do
+            case "$platform" in
+              .github/|Templates/|README.md|.git/) continue ;;
+            esac
 
-          if [ -d "Codeforces" ]; then
-            codeforces=$(find Codeforces -mindepth 2 -type d | wc -l)
-          fi
+            count=$(find "$platform" -mindepth 2 -type d 2>/dev/null | wc -l)
 
-          if [ -d "LeetCode" ]; then
-            leetcode=$(find LeetCode -mindepth 2 -type d | wc -l)
-          fi
+            if [ "$count" -gt 0 ]; then
+              echo "${platform%/}: $count" >> platform.txt
+              total=$((total + count))
+            fi
+          done
 
-          # Count languages based on folder names
-          c=$(find . -type f -name "*.c"  | wc -l)
-          cpp=$(find . -type f -name "*.cpp" | wc -l)
-          java=$(find . -type f -name "*.java" | wc -l)
-          python=$(find . -type f -name "*.py" | wc -l)
+          # -------------------------
+          # LANGUAGE-wise (dynamic)
+          # -------------------------
+          declare -A lang_map
 
-          total=$((beecrowd + codeforces + leetcode))
+          for dir in $(find . -mindepth 2 -type d); do
+            lang=$(basename "$dir")
+            count=$(find "$dir" -mindepth 1 -type d | wc -l)
 
-          echo "BEECROWD=$beecrowd" >> $GITHUB_ENV
-          echo "CODEFORCES=$codeforces" >> $GITHUB_ENV
-          echo "LEETCODE=$leetcode" >> $GITHUB_ENV
+            lang_map["$lang"]=$((lang_map["$lang"] + count))
+          done
 
-          echo "C=$c" >> $GITHUB_ENV
-          echo "CPP=$cpp" >> $GITHUB_ENV
-          echo "JAVA=$java" >> $GITHUB_ENV
-          echo "PYTHON=$python" >> $GITHUB_ENV
+          for key in "${!lang_map[@]}"; do
+            if [ "${lang_map[$key]}" -gt 0 ]; then
+              echo "$key: ${lang_map[$key]}" >> language.txt
+            fi
+          done
 
           echo "TOTAL=$total" >> $GITHUB_ENV
 
       - name: Update README
         run: |
-          awk -v b="${BEECROWD}" \
-              -v c="${CODEFORCES}" \
-              -v l="${LEETCODE}" \
-              -v cc="${C}" \
-              -v cp="${CPP}" \
-              -v j="${JAVA}" \
-              -v p="${PYTHON}" \
-              -v t="${TOTAL}" '
-          BEGIN {inside=0}
+          awk -v total="$TOTAL" '
+          BEGIN {
+            platform_section=0;
+            language_section=0;
+          }
+
           /<!-- START_STATS -->/ {
             print;
-            inside=1;
             print "";
             print "## 📊 Statistics";
             print "";
             print "### Platform-wise";
             print "";
-            print "- Beecrowd: " b;
-            print "- Codeforces: " c;
-            print "- LeetCode: " l;
+
+            while ((getline line < "platform.txt") > 0) {
+              print "- " line;
+            }
+
             print "";
             print "### Language-wise";
             print "";
-            print "- C: " cc;
-            print "- C++: " cp;
-            print "- Java: " j;
-            print "- Python: " p;
+
+            while ((getline line < "language.txt") > 0) {
+              print "- " line;
+            }
+
             print "";
             print "### Total Solved";
             print "";
-            print "- " t;
+            print "- " total;
             print "";
-            next
+            next;
           }
+
           /<!-- END_STATS -->/ {
-            inside=0
+            print;
+            next;
           }
-          inside==0 {print}
+
+          { print }
           ' README.md > temp.md && mv temp.md README.md
 
-      - name: Commit and push
+      - name: Commit changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
           git add README.md
 
-          git diff --cached --quiet && echo "No changes" || git commit -m "📊 Auto update statistics"
+          git diff --cached --quiet && echo "No changes" || git commit -m "📊 Auto update dynamic stats"
 
           git push
