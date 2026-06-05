@@ -27,6 +27,36 @@
 
 <div align="center">
 
+<span style="font-size:26px; font-weight:bold;">
+LIVE PROGRESS DASHBOARD
+</span>
+
+</div>
+
+<div align="center">
+
+<span style="font-size:18px;">
+Platform-wise Solved
+</span>
+<br/><br/>
+<span style="font-size:14px;">• Beecrowd: 4</span><br/>
+<br/>
+<span style="font-size:18px;">
+Language-wise Solved
+</span>
+<br/><br/>
+<span style="font-size:14px;">• C: 2</span><br/>
+<span style="font-size:14px;">• C++: 2</span><br/>
+<br/>
+<span style="font-size:20px; font-weight:bold;">
+Total Solved: 4
+</span>
+
+</div>
+
+
+<div align="center">
+
 ## 📊 LIVE PROGRESS DASHBOARD
 
 <span style="font-size:18px; color:#00C2FF;">
