@@ -1,0 +1,45 @@
+name: Update Problem Counter
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  update-count:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Count C++ files
+        run: |
+          # beecrowd (C++) ফোল্ডারে সব .cpp ফাইল কাউন্ট করুন
+          if [ -d "beecrowd (C++)" ]; then
+            count=$(find "beecrowd (C++)" -name "*.cpp" 2>/dev/null | wc -l)
+          else
+            count=0
+          fi
+          echo "TOTAL_SOLVED=$count" >> $GITHUB_ENV
+          echo "Found $count C++ files"
+          
+      - name: Update README
+        run: |
+          # README.md এ প্লেসহোল্ডার আপডেট করুন
+          if [ -f "README.md" ]; then
+            if grep -q "Total Solved:" README.md; then
+              sed -i "s/🔢 Total Solved: .*/🔢 Total Solved: ${{ env.TOTAL_SOLVED }}/" README.md
+            else
+              echo -e "\n🔢 **Total Solved:** ${{ env.TOTAL_SOLVED }}" >> README.md
+            fi
+          else
+            echo "# Problem Solving" > README.md
+            echo -e "\n🔢 **Total Solved:** ${{ env.TOTAL_SOLVED }}" >> README.md
+          fi
+          
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git diff --quiet && git diff --staged --quiet || git commit -m "Auto-update problem count [skip ci]"
+          git push
