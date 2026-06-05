@@ -80,7 +80,7 @@ jobs:
 
             print "<div align=\"center\">";
 
-            print "<h2 style=\"font-size:24px; margin-bottom:10px;\">📊 Live Progress Dashboard</h2>";
+            print "<h2 style=\"font-size:24px; margin-bottom:10px;\">🔴 LIVE STATISTICS DASHBOARD</h2>";
 
             # ---------------- PLATFORM ----------------
             print "<h3 style=\"font-size:18px; margin-top:20px;\">Platform-wise Solved</h3>";
