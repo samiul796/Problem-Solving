@@ -33,6 +33,7 @@
 </pre>
 <h3>Language-wise Solved</h3>
 <pre style="font-size:15px; line-height:1.6;">
+✔ Java               :     0
 ✔ C                  :     4
 ✔ C++                :     5
 </pre>
