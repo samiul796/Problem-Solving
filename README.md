@@ -1,5 +1,3 @@
-# Beecrowd Problem Solving (C++)
-
 <!-- START_STATS -->
 
 ## 📊 Statistics
