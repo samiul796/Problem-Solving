@@ -80,33 +80,40 @@ jobs:
             print;
             print "";
 
+            print "<div align=\"center\">";
+            print "";
             print "## 📊 LIVE PROGRESS DASHBOARD";
             print "";
+            print "<span style=\"font-size:18px; color:#00C2FF;\">";
+            print "Real-time automated tracking via GitHub Actions";
+            print "</span>";
+            print "";
+            print "</div>";
+            print "";
 
-            print "╭──────────────────────────────╮";
-            print "│ 📍 Platform-wise Solved      │";
-            print "╰──────────────────────────────╯";
+            print "<div align=\"center\">";
+            print "";
+            print "### 📍 Platform-wise Solved";
+            print "";
 
             while ((getline line < "platform.txt") > 0) {
-              print "   • " line;
+              print "<b>• " line "</b><br/>";
             }
 
             print "";
-            print "╭──────────────────────────────╮";
-            print "│ 💻 Language-wise Solved      │";
-            print "╰──────────────────────────────╯";
+            print "### 💻 Language-wise Solved";
+            print "";
 
             while ((getline line < "language.txt") > 0) {
-              print "   • " line;
+              print "<b>• " line "</b><br/>";
             }
 
             print "";
-            print "╭──────────────────────────────╮";
-            print "│ ⚡ Total Solved Count        │";
-            print "╰──────────────────────────────╯";
-
+            print "### ⚡ Total Solved";
             print "";
-            print "   🧮 " total;
+            print "<span style=\"font-size:22px; color:#7C4DFF;\"><b>🧮 " total "</b></span>";
+            print "";
+            print "</div>";
             print "";
 
             next;
