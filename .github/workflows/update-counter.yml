@@ -3,7 +3,11 @@ name: Update Problem Counter
 on:
   push:
     branches: [ main, master ]
-  workflow_dispatch:           # allows manual run from Actions tab
+  workflow_dispatch:
+
+# ⬇️ THIS IS THE FIX – grant write permissions
+permissions:
+  contents: write
 
 jobs:
   count-and-update:
@@ -16,10 +20,8 @@ jobs:
       - name: Count all .cpp files inside "beecrowd (C++)"
         id: count
         run: |
-          # The folder name contains spaces and parentheses – we quote it.
           folder="beecrowd (C++)"
           if [ -d "$folder" ]; then
-            # Find all .cpp files recursively, count lines
             count=$(find "$folder" -type f -name "*.cpp" 2>/dev/null | wc -l)
           else
             count=0
@@ -29,8 +31,6 @@ jobs:
 
       - name: Update README.md with the new count
         run: |
-          # Look for the exact placeholder line: "🔢 **Total Solved:** XX"
-          # Replace the number after the colon with the actual count
           sed -i "s/🔢 \*\*Total Solved:\*\* [0-9]*/🔢 **Total Solved:** ${{ env.TOTAL_SOLVED }}/" README.md
 
       - name: Commit and push changes
@@ -38,6 +38,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add README.md
-          # Only commit if there are changes
           git diff --quiet && git diff --staged --quiet || git commit -m "Auto-update solved problem count [skip ci]"
           git push
