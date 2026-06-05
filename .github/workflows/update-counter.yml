@@ -100,7 +100,7 @@ jobs:
             print "<div style=\"margin-top:25px; padding:20px; border-radius:14px; background:#0f0f1a;\">";
 
             print "<div style=\"font-size:14px; letter-spacing:3px; color:#aaa; margin-bottom:8px;\">";
-            print "𝕋𝕆𝕋𝔸𝕃 𝕊𝕆𝕃𝕍𝔼𝔻";
+            print "𝐓𝐎𝐓𝐀𝐋 𝐒𝐎𝐋𝐕𝐄𝐃";
             print "</div>";
 
             print "<div style=\"font-size:60px; font-weight:900; color:#7C4DFF; line-height:1;\">";
