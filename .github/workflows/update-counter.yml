@@ -25,7 +25,7 @@ jobs:
           total=0
 
           # -------------------------
-          # PLATFORM-wise (dynamic)
+          # PLATFORM-wise
           # -------------------------
           for platform in */ ; do
 
@@ -42,7 +42,7 @@ jobs:
           done
 
           # -------------------------
-          # LANGUAGE-wise (dynamic)
+          # LANGUAGE-wise
           # -------------------------
           declare -A lang_map
 
@@ -82,10 +82,8 @@ jobs:
 
             print "<div align=\"center\">";
             print "";
-            print "## 📊 LIVE PROGRESS DASHBOARD";
-            print "";
-            print "<span style=\"font-size:18px; color:#00C2FF;\">";
-            print "Real-time automated tracking via GitHub Actions";
+            print "<span style=\"font-size:26px; font-weight:bold;\">";
+            print "LIVE PROGRESS DASHBOARD";
             print "</span>";
             print "";
             print "</div>";
@@ -93,25 +91,33 @@ jobs:
 
             print "<div align=\"center\">";
             print "";
-            print "### 📍 Platform-wise Solved";
-            print "";
+
+            print "<span style=\"font-size:18px;\">";
+            print "Platform-wise Solved";
+            print "</span>";
+            print "<br/><br/>";
 
             while ((getline line < "platform.txt") > 0) {
-              print "<b>• " line "</b><br/>";
+              print "<span style=\"font-size:14px;\">• " line "</span><br/>";
             }
 
-            print "";
-            print "### 💻 Language-wise Solved";
-            print "";
+            print "<br/>";
+
+            print "<span style=\"font-size:18px;\">";
+            print "Language-wise Solved";
+            print "</span>";
+            print "<br/><br/>";
 
             while ((getline line < "language.txt") > 0) {
-              print "<b>• " line "</b><br/>";
+              print "<span style=\"font-size:14px;\">• " line "</span><br/>";
             }
 
-            print "";
-            print "### ⚡ Total Solved";
-            print "";
-            print "<span style=\"font-size:22px; color:#7C4DFF;\"><b>🧮 " total "</b></span>";
+            print "<br/>";
+
+            print "<span style=\"font-size:20px; font-weight:bold;\">";
+            print "Total Solved: " total;
+            print "</span>";
+
             print "";
             print "</div>";
             print "";
@@ -134,6 +140,6 @@ jobs:
 
           git add README.md
 
-          git diff --cached --quiet || git commit -m "📊 Auto update stats"
+          git diff --cached --quiet || git commit -m "Auto update stats"
 
           git push
