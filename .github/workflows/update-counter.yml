@@ -104,12 +104,17 @@ jobs:
 
             print "</pre>";
 
-            # ---------------- TOTAL ----------------
-            print "<div style=\"margin-top:20px; padding:10px;\">";
-            print "<div style=\"font-size:14px; color:#888;\">TOTAL SOLVED</div>";
-            print "<div style=\"font-size:32px; font-weight:bold; color:#7C4DFF;\">";
+            # ---------------- TOTAL KPI CARD ----------------
+            print "<div style=\"margin-top:25px; padding:15px; border-radius:12px; background:#0f0f1a;\">";
+
+            print "<div style=\"font-size:14px; letter-spacing:2px; color:#aaa; margin-bottom:5px;\">";
+            print "TOTAL SOLVED";
+            print "</div>";
+
+            print "<div style=\"font-size:42px; font-weight:800; color:#7C4DFF;\">";
             print "🧮 " total;
             print "</div>";
+
             print "</div>";
 
             print "</div>";
