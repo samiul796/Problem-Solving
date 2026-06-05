@@ -99,7 +99,7 @@ jobs:
             # ---------------- TOTAL CARD ----------------
             print "<div style=\"margin-top:25px; padding:20px; border-radius:14px; background:#0f0f1a;\">";
 
-            print "<div style=\"font-size:14px; letter-spacing:3px; color:#aaa; margin-bottom:8px;\">";
+            print "<div style=\"font-size:20px; letter-spacing:3px; color:#aaa; margin-bottom:8px;\">";
             print "𝐓𝐎𝐓𝐀𝐋 𝐒𝐎𝐋𝐕𝐄𝐃";
             print "</div>";
 
