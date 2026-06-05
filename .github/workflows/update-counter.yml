@@ -57,7 +57,7 @@ jobs:
             case "$lang" in
               C|C++|Java|Python)
                 count=$(find "$dir" -mindepth 1 -type d | wc -l)
-                lang_map["$lang"]=$((lang_map["$lang"] + count))
+                lang_map["$lang"]=$((lang_map[$lang] + count))
                 ;;
               *)
                 continue
@@ -86,12 +86,13 @@ jobs:
 
             print "";
             print "<div align=\"center\">";
-            print "<div style=\"font-size:22px; font-weight:700; color:#00C2FF;\">";
+
+            print "<div style=\"font-size:24px; font-weight:800; color:#00C2FF;\">";
             print "LIVE STATISTICS DASHBOARD";
             print "</div>";
             print "<br/>";
 
-            print "<pre style=\"font-size:15px; text-align:left; display:inline-block;\">";
+            print "<pre style=\"font-size:15px; text-align:left; display:inline-block; line-height:1.6;\">";
 
             # ---------------- PLATFORM ----------------
             print "Platform-wise Solved";
@@ -124,9 +125,9 @@ jobs:
             print "</pre>";
 
             # ---------------- TOTAL CARD ----------------
-            print "<div style=\"margin-top:15px;\">";
-            print "<div style=\"font-size:14px; letter-spacing:2px; color:#aaa;\">TOTAL SOLVED</div>";
-            print "<div style=\"font-size:40px; font-weight:800; color:#7C4DFF;\">🧮 " total "</div>";
+            print "<div style=\"margin-top:18px; padding:12px; border-radius:10px; background:#0f0f1a; display:inline-block;\">";
+            print "<div style=\"font-size:13px; letter-spacing:2px; color:#aaa;\">TOTAL SOLVED</div>";
+            print "<div style=\"font-size:44px; font-weight:900; color:#7C4DFF;\">🧮 " total "</div>";
             print "</div>";
 
             print "</div>";
