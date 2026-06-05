@@ -22,37 +22,13 @@
 
 <div align="center">
 
-## 🔴 LIVE STATISTICS FEED
-<!-- START_STATS -->
-
 ## 🔴 LIVE STATISTICS DASHBOARD
-
-> 📡 Auto-updated via GitHub Actions | Real-time repository scan
-
-### 📊 Platform Activity
-
-• Beecrowd: 4
-
-### 💻 Language Activity
-
-• C: 2
-• C++: 2
-
-### ⚡ Total Solved
-
-```
-TOTAL PROBLEMS: 4
-```
-
-🟢 Status: LIVE • SYSTEM ACTIVE
-
+<!-- START_STATS -->
 
 <!-- END_STATS -->
 
-<img src="https://img.shields.io/badge/STATUS-LIVE%20%E2%80%A2%20PULSE-00FF9F?style=for-the-badge&logo=github&logoColor=white"/>
 
-
-> 📡 Auto-updated in real time via GitHub Actions pipeline
+ 📡 Auto-updated in real time via GitHub Actions pipeline
 
 </div>
 
