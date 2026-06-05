@@ -13,10 +13,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v5
 
-      - name: Generate dynamic stats
+      - name: Generate statistics
         run: |
           echo "Generating stats..."
 
@@ -28,8 +28,10 @@ jobs:
           # PLATFORM-wise (dynamic)
           # -------------------------
           for platform in */ ; do
+
+            # ignore system folders
             case "$platform" in
-              .github/|Templates/|README.md|.git/) continue ;;
+              .github/|Templates/|.git/) continue ;;
             esac
 
             count=$(find "$platform" -mindepth 2 -type d 2>/dev/null | wc -l)
@@ -41,15 +43,28 @@ jobs:
           done
 
           # -------------------------
-          # LANGUAGE-wise (dynamic)
+          # LANGUAGE-wise (clean + filtered)
           # -------------------------
           declare -A lang_map
 
           for dir in $(find . -mindepth 2 -type d); do
-            lang=$(basename "$dir")
-            count=$(find "$dir" -mindepth 1 -type d | wc -l)
 
-            lang_map["$lang"]=$((lang_map["$lang"] + count))
+            # ignore git system folders
+            if [[ "$dir" == *".git"* ]]; then
+              continue
+            fi
+
+            lang=$(basename "$dir")
+
+            case "$lang" in
+              C|C++|Java|Python)
+                count=$(find "$dir" -mindepth 1 -type d | wc -l)
+                lang_map["$lang"]=$((lang_map["$lang"] + count))
+                ;;
+              *)
+                continue
+                ;;
+            esac
           done
 
           for key in "${!lang_map[@]}"; do
@@ -63,29 +78,29 @@ jobs:
       - name: Update README
         run: |
           awk -v total="$TOTAL" '
-          BEGIN {
-            platform_section=0;
-            language_section=0;
-          }
-
           /<!-- START_STATS -->/ {
             print;
             print "";
             print "## 📊 Statistics";
             print "";
+
             print "### Platform-wise";
             print "";
 
-            while ((getline line < "platform.txt") > 0) {
-              print "- " line;
+            if (system("test -f platform.txt") == 0) {
+              while ((getline line < "platform.txt") > 0) {
+                print "- " line;
+              }
             }
 
             print "";
             print "### Language-wise";
             print "";
 
-            while ((getline line < "language.txt") > 0) {
-              print "- " line;
+            if (system("test -f language.txt") == 0) {
+              while ((getline line < "language.txt") > 0) {
+                print "- " line;
+              }
             }
 
             print "";
@@ -111,6 +126,6 @@ jobs:
 
           git add README.md
 
-          git diff --cached --quiet && echo "No changes" || git commit -m "📊 Auto update dynamic stats"
+          git diff --cached --quiet && echo "No changes" || git commit -m "📊 Auto update stats"
 
           git push
