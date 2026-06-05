@@ -72,7 +72,7 @@ jobs:
 
             print "<div align=\"center\">";
 
-            print "<h2 style=\"font-size:24px;\">📊 Live Progress Dashboard</h2>";
+            print "<h2 style=\"font-size:24px;\">🔴 LIVE STATISTICS DASHBOARD</h2>";
 
             # ---------------- PLATFORM ----------------
             print "<h3 style=\"font-size:18px;\">Platform-wise Solved</h3>";
@@ -100,11 +100,11 @@ jobs:
             print "<div style=\"margin-top:25px; padding:20px; border-radius:14px; background:#0f0f1a;\">";
 
             print "<div style=\"font-size:14px; letter-spacing:3px; color:#aaa; margin-bottom:8px;\">";
-            print "TOTAL SOLVED";
+            print "𝕋𝕆𝕋𝔸𝕃 𝕊𝕆𝕃𝕍𝔼𝔻";
             print "</div>";
 
             print "<div style=\"font-size:60px; font-weight:900; color:#7C4DFF; line-height:1;\">";
-            print "🧮 " total;
+            print "✅ " total;
             print "</div>";
 
             print "</div>";
