@@ -5,6 +5,26 @@
 ### Platform-wise
 
 - Beecrowd: 4
+
+### Language-wise
+
+- refs: 7
+- objects: 15
+- C: 2
+- logs: 4
+- remotes: 2
+- C++: 2
+
+### Total Solved
+
+- 4
+
+
+## 📊 Statistics
+
+### Platform-wise
+
+- Beecrowd: 4
 - Codeforces: 0
 - LeetCode: 0
 
