@@ -1,7 +1,10 @@
-## 📊 Statistics
+# Beecrowd Problem Solving (C++)
 
-<!-- START_STATS -->
+🔢 **Total Solved:** 0
 
-Loading...
+## Folder Structure
+- `beecrowd (C++)/Problems (1 to 30)/` - First 30 problems
+- `beecrowd (C++)/Problems (31 to NEXT)/` - Problems 31 onwards
 
-<!-- END_STATS -->
+## Solved Problems List
+(Your existing content)
