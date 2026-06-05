@@ -25,6 +25,26 @@
 ## 🔴 LIVE STATISTICS DASHBOARD
 <!-- START_STATS -->
 
+## 📊 LIVE PROGRESS DASHBOARD
+
+╭──────────────────────────────╮
+│ 📍 Platform-wise Solved      │
+╰──────────────────────────────╯
+   • Beecrowd: 4
+
+╭──────────────────────────────╮
+│ 💻 Language-wise Solved      │
+╰──────────────────────────────╯
+   • C: 2
+   • C++: 2
+
+╭──────────────────────────────╮
+│ ⚡ Total Solved Count        │
+╰──────────────────────────────╯
+
+   🧮 4
+
+
 ## 🔴 LIVE STATISTICS DASHBOARD
 
 > 📡 Auto-updated via GitHub Actions | Real-time repository scan
