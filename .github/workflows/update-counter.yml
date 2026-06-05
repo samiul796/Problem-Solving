@@ -22,11 +22,8 @@ jobs:
 
           total=0
 
-          # -------------------------
-          # PLATFORM-wise
-          # -------------------------
+          # ---------------- PLATFORM ----------------
           for platform in */ ; do
-
             case "$platform" in
               .github/|Templates/|.git/) continue ;;
             esac
@@ -39,16 +36,11 @@ jobs:
             fi
           done
 
-          # -------------------------
-          # LANGUAGE-wise
-          # -------------------------
+          # ---------------- LANGUAGE ----------------
           declare -A lang_map
 
           for dir in $(find . -mindepth 2 -type d); do
-
-            if [[ "$dir" == *".git"* ]]; then
-              continue
-            fi
+            [[ "$dir" == *".git"* ]] && continue
 
             lang=$(basename "$dir")
 
@@ -80,10 +72,10 @@ jobs:
 
             print "<div align=\"center\">";
 
-            print "<h2 style=\"font-size:24px; margin-bottom:10px;\">🔴 LIVE STATISTICS DASHBOARD</h2>";
+            print "<h2 style=\"font-size:24px;\">📊 Live Progress Dashboard</h2>";
 
             # ---------------- PLATFORM ----------------
-            print "<h3 style=\"font-size:18px; margin-top:20px;\">Platform-wise Solved</h3>";
+            print "<h3 style=\"font-size:18px;\">Platform-wise Solved</h3>";
             print "<pre style=\"font-size:15px; line-height:1.6;\">";
 
             while ((getline line < "platform.txt") > 0) {
@@ -94,7 +86,7 @@ jobs:
             print "</pre>";
 
             # ---------------- LANGUAGE ----------------
-            print "<h3 style=\"font-size:18px; margin-top:20px;\">Language-wise Solved</h3>";
+            print "<h3 style=\"font-size:18px;\">Language-wise Solved</h3>";
             print "<pre style=\"font-size:15px; line-height:1.6;\">";
 
             while ((getline line < "language.txt") > 0) {
@@ -104,21 +96,20 @@ jobs:
 
             print "</pre>";
 
-            # ---------------- TOTAL KPI CARD ----------------
-            print "<div style=\"margin-top:25px; padding:15px; border-radius:12px; background:#0f0f1a;\">";
+            # ---------------- TOTAL CARD ----------------
+            print "<div style=\"margin-top:25px; padding:20px; border-radius:14px; background:#0f0f1a;\">";
 
-            print "<div style=\"font-size:14px; letter-spacing:2px; color:#aaa; margin-bottom:5px;\">";
+            print "<div style=\"font-size:14px; letter-spacing:3px; color:#aaa; margin-bottom:8px;\">";
             print "TOTAL SOLVED";
             print "</div>";
 
-            print "<div style=\"font-size:42px; font-weight:800; color:#7C4DFF;\">";
+            print "<div style=\"font-size:60px; font-weight:900; color:#7C4DFF; line-height:1;\">";
             print "🧮 " total;
             print "</div>";
 
             print "</div>";
 
             print "</div>";
-            print "";
 
             next;
           }
