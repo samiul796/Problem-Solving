@@ -29,16 +29,17 @@
 <h3>Platform-wise Solved</h3>
 <pre style="font-size:15px; line-height:1.6;">
 ✔ Beecrowd           :    95
+✔ ContestSolved      :     4
 ✔ LeetCode           :     2
 </pre>
 <h3>Language-wise Solved</h3>
 <pre style="font-size:15px; line-height:1.6;">
-✔ C                  :    58
-✔ C++                :    39
+✔ C                  :    60
+✔ C++                :    41
 </pre>
 <div style="margin-top:20px;padding:20px;border-radius:12px;background:#0f0f1a;">
 <div style="font-size:14px;color:#aaa;">🕊️ 𝐓𝐎𝐓𝐀𝐋 𝐒𝐎𝐋𝐕𝐄𝐃 🕊️</div>
-<div style="font-size:60px;color:#00C2FF;font-weight:bold;">✅ 97</div>
+<div style="font-size:60px;color:#00C2FF;font-weight:bold;">✅ 101</div>
 </div>
 </div>
 <!-- END_STATS -->
