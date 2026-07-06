@@ -4,12 +4,13 @@ using namespace std;
 int main()
 {
 
-    int n, num;
+    int n, sum;
     cin >> n;
     while (n--)
     {
+        int num;
         cin >> num;
-        int sum = 0;
+        sum = 0;
         for (int kkk = 1; kkk <= ((int)sqrt(num)) + 1; kkk++)
         {
 
