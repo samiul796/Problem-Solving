@@ -11,10 +11,10 @@ int main()
         int num;
         cin >> num;
         sum = 0;
-        for (int kkk = 1; kkk <= ((int)sqrt(num)) + 1; kkk++)
+        for (int kkk = 1; kkk < num; kkk++)
         {
 
-            if ((num / kkk) == 0)
+            if ((num % kkk) == 0)
             {
                 sum += kkk;
             }
