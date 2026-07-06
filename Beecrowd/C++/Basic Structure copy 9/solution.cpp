@@ -16,8 +16,9 @@ int main()
 
             if ((num % kkk) == 0)
             {
-                cout << num << " nao eh perfeito" << endl;
-            }
+                cout << num << " nao eh primo" << endl;
+                        }
+
         }
 
         if (sum == num)
