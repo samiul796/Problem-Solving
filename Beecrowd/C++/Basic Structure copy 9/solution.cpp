@@ -8,7 +8,7 @@ int main()
     cin >> n;
     while (n--)
     {
-        int num;
+        int num, status = 0;
         cin >> num;
 
         for (int kkk = 2; kkk < num; kkk++)
@@ -16,16 +16,16 @@ int main()
 
             if ((num % kkk) == 0)
             {
-                cout << num << " nao eh primo" << endl;
-                        }
-
+                status = 1;
+                break;
+            }
         }
 
-        if (sum == num)
-            cout << num << " eh perfeito" << endl;
+        if (status == 1)
+            cout << num << " nao eh primo" << endl;
         else
-            cout << num << " nao eh perfeito" << endl;
+            cout << num << " eh primo" << endl;
     }
 
     return 0;
-} 
+}
