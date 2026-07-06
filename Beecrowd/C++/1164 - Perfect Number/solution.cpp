@@ -5,13 +5,12 @@ int main()
 {
 
     int n, num;
-
+    cin >> n;
     while (n--)
     {
         cin >> num;
-        vector<int> vec;
         int sum = 0;
-        for (int kkk = 1; kkk <= ((int)sqrt(num)) + 1 ; kkk++)
+        for (int kkk = 1; kkk <= ((int)sqrt(num)) + 1; kkk++)
         {
 
             if ((num / kkk) == 0)
@@ -20,10 +19,10 @@ int main()
             }
         }
 
-        if (sum==num)
-        cout<< num << "eh perfeito" << endl; 
+        if (sum == num)
+            cout << num << " eh perfeito" << endl;
         else
-            cout << num << "eh perfeito" << endl;
+            cout << num << " nao eh perfeito" << endl;
     }
 
     return 0;
