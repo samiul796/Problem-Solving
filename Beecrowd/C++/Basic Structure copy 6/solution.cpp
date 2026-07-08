@@ -13,7 +13,8 @@ int main()
 
     while (i--)
     {
-        vec.push_back(n / 2.0);
+        n /= 2.0;
+        vec.push_back(n);
     }
 
     for (auto x : vec)
