@@ -9,7 +9,7 @@ int main()
     vector<double> vec;
     vec.push_back(n);
 
-    int i = 99;
+    int i = 3;
 
     while (i--)
     {
@@ -17,9 +17,9 @@ int main()
         vec.push_back(n);
     }
 
-    for (auto x : vec)
+    for (int i = 0; i < 100; i++)
     {
-        cout << x << endl;
+        cout << "N[" << i << "] = " << showpoint << fixed << setprecision(4) << vec[i] << endl;
     }
 
     return 0;
