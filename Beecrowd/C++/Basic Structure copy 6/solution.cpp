@@ -9,7 +9,9 @@ int main()
     vector<double> vec;
     vec.push_back(n);
 
-    while (99 --)
+    int i = 99;
+
+    while (i--)
     {
         vec.push_back(n / 2.0);
     }
