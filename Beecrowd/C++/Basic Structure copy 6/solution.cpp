@@ -9,7 +9,7 @@ int main()
     vector<double> vec;
     vec.push_back(n);
 
-    int i = 3;
+    int i = 98;
 
     while (i--)
     {
