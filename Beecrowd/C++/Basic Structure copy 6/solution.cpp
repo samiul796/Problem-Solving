@@ -24,7 +24,7 @@ int main()
         {
             sum += arr[n][kk];
         }
-        cout << sum << endl;
+        cout << fixed << setprecision(1) << sum << endl;
     }
     else if (p == 'M')
     {
@@ -34,7 +34,7 @@ int main()
         {
             sum += arr[n][kk];
         }
-        cout << (sum / 12.0) << endl;
+        cout << fixed << setprecision(1) << (sum / 12.0) << endl;
     }
 
     return 0;
