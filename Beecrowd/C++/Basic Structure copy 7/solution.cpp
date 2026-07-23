@@ -12,7 +12,7 @@ int main()
     for (int i = 0; i < n; i++)
     {
         cin >> vec[i];
-        if (min < vec[i])
+        if (min > vec[i])
         {
 
             min = vec[i];
