@@ -4,16 +4,23 @@ using namespace std;
 int main()
 {
 
-    int n;
+    int n, min = 0;
     cin >> n;
 
     vector<int> vec(n);
 
     for (int i = 0; i < n; i++)
     {
-        cin >> vec[];
+        cin >> vec[i];
+        if (min < vec[i])
+            min = vec[i];
     }
-
+    for (int  i = 0; i < n ; i++)
+    {
+if (min == vec[i])
+    cout << "Menor valor: " << vec[i] << endl
+         << "Posicao: " << i << endl ;
+}
     
 
     return 0;
