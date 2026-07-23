@@ -4,7 +4,7 @@ using namespace std;
 int main()
 {
 
-    int n, min = 0;
+    int n, min = INT_MAX;
     cin >> n;
 
     vector<int> vec(n);
