@@ -15,13 +15,12 @@ int main()
         if (min < vec[i])
             min = vec[i];
     }
-    for (int  i = 0; i < n ; i++)
+    for (int i = 0; i < n; i++)
     {
-if (min == vec[i])
-    cout << "Menor valor: " << vec[i] << endl
-         << "Posicao: " << i << endl ;
-}
-    
+        if (min == vec[i])
+            cout << "Menor valor: " << vec[i] << endl
+                 << "Posicao: " << i << endl;
+    }
 
     return 0;
 }
