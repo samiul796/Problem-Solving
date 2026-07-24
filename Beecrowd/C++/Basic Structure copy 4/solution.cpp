@@ -20,7 +20,7 @@ int main()
 
     for (int k = 7; k < 12; k++)
     {
-        for (int kk = 11 - k; kk < k; kk++)
+        for (int kk = 11 - (k-1); kk < k; kk++)
         {
             sum += arr[k][kk];
         }
