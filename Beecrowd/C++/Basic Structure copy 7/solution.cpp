@@ -8,7 +8,7 @@ int main()
     string ho = "Ho";
     for (int i = 0; i < n; i++)
     {
-        (i == n - 1) ? cout << ho << "!" : cout << ho << " ";
+        (i == n - 1) ? cout << ho << "!" << endl : cout << ho << " ";
     }
 
 
