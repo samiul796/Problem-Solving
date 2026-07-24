@@ -11,6 +11,5 @@ int main()
         (i == n - 1) ? cout << ho << "!" << endl : cout << ho << " ";
     }
 
-
     return 0;
 }
