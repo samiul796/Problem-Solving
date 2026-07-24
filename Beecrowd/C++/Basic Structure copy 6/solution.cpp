@@ -7,12 +7,13 @@ int main()
     double a, b, c;
     cin >> a >> b >> c;
 
-    while ((cin >> a >> b >> c) && (a != 0) && (b != 0) && (c != 0))
+    while (cin >> a >> b >> c)
     {
-        double res = (a * b * 100) / c;
-        int finalans = (int)sqrt(res);
-        cout << finalans << endl;
-    }
+        if (a == 0)
+            break;
 
+        double res = (a * b * 100) / c;
+        cout << (int)sqrt(res) << endl;
+    }
     return 0;
 }
