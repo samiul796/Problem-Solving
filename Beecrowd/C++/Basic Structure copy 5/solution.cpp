@@ -8,7 +8,8 @@ int main()
     for (n--)
     {
         int Sheldon, raj;
-        string word1, word2, array1[5] = {"pedra", "papel", "tesoura", "lagarto", "Spock"};
+        //  scissors ,paper, rock , lizard ,Spock
+        string word1, word2, array1[5] = {"pedra", "papel", "tesoura", "lagarto", "Spock"}; // rock, paper, scissors, lizard and Spock
         cin >> word1 >> word2;
         for (int i = 0; i < n; i++)
         {
@@ -23,16 +24,18 @@ int main()
             }
         }
 
-        if (Sheldon == raj){
-            cout << "Caso #" << n << "De novo!" << endl ;
+        if (Sheldon == raj)
+        {
+            cout << "Caso #" << n << "De novo!" << endl;
         }
-        else if (Sheldon>raj)
+        else if (Sheldon > raj)
         {
             cout << "Caso #" << n << "Bazinga!" << endl;
         }
-        // Raj trapaceou!
-
-        
+        else
+        {
+            cout << "Caso #" << n << "Raj trapaceou!" << endl;
+        }
     }
 
     return 0;
