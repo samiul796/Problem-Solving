@@ -9,7 +9,7 @@ int main()
 
     for (int i = 0; i < n; i++)
     {
-
+        int Sheldon, raj;
         string word1, word2, array1[5] = {"pedra", "papel", "tesoura", "lagarto", "Spock"};
         cin >> word1 >> word2;
         for (int i = 0; i < n; i++)
