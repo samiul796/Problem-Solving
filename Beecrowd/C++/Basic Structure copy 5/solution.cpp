@@ -28,12 +28,11 @@ int main()
         }
         else if (Sheldon>raj)
         {
-            
+            cout << "Caso #" << n << "Bazinga!" << endl;
         }
+        // Raj trapaceou!
 
-
-
-
+        
     }
 
     return 0;
