@@ -9,4 +9,4 @@ int main()
         sum += x, cnt++;
 
     cout << fixed << setprecision(2) << (double)sum / cnt << "\n";
-}
+} // checked again
