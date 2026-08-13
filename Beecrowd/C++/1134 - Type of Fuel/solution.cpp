@@ -9,5 +9,5 @@ int main()
     cout << "MUITO OBRIGADO" << endl
          << "Alcool: " << a << endl
          << "Gasolina: " << g << endl
-         << "Diesel: " << d << endl;
-}
+         << "Diesel: " << d << endl; 
+} // DONE
