@@ -7,7 +7,7 @@ int main()
     int number;
 
     cin >> number;
-    int arr[number, number]; 
+    int arr[number, number];
     for (int i = 0; i < number; i++)
     {
         for (int ii = 0; ii < number; ii++)
@@ -15,15 +15,25 @@ int main()
 
             if (i == ii)
             {
-                cout << 1;
+                arr[i, ii] == 1;
             }
-            else if ()
+            else if ((ii - i) == number)
             {
+                arr[i, ii] = 2;
+            }
+            else
+            {
+                arr[i, ii] = 3;
             }
         }
-
-        /* code */
     }
+    for (int i = 0; i < number; i++)
+    {
+        for (int ii = 0; ii < number; ii++)
+        {
 
+            cout << arr[i, ii];
+        }
+    }
     return 0;
 }
