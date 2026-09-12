@@ -10,7 +10,7 @@
 <div align="center">
 
 <span style="font-size:18px; color:#00C2FF;">
-🚀 Welcome to my Problem Solving Repository — structured, automated, and continuously evolving.
+🚀 Welcome to my CP solutions and progress tracker repository — structured, automated, and continuously evolving.
 </span>
 
 </div>
