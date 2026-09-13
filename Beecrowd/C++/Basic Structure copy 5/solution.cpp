@@ -11,13 +11,16 @@ int main()
         {
             for (int l = 0; l < n; l++)
             {
-               
-
-
-
-
-                
+                if (k == 0 || k == (n - 1) || l == 0 || l == (n - 1))
+                {
+                    cout << "\t" << 1;
+                }
+                else
+                {
+                    cout << "\t" << 2;
+                }
             }
+            cout << "\n";
         }
     }
 
