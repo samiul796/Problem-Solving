@@ -5,10 +5,16 @@ int main()
 
     int a, b;
     cin >> a >> b;
-    if ((a >= -1000) && (a <= 1000))
+    int r = a % b;
+    int q = a / b;
+
+    if (r < 0)
     {
-        cout << a / b << " " << a % b << endl;
+        r += abs(b);
+        q = (a - r) / b;
     }
+
+    cout << q << " " << r << endl;
 
     return 0;
 }
