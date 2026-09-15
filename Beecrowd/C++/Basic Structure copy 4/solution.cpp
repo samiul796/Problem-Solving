@@ -8,7 +8,7 @@ int main()
   cin >> size;
   vector<pair<int, int>> vec(size);
 
-  for (int i = 0; i < vec.length(); i++)
+  for (int i = 0; i < vec.size(); i++)
   {
 
     vec[i].first = i;
