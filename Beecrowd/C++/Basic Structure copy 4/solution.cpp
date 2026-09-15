@@ -11,11 +11,11 @@ int main()
   for (int i = 0; i < vec.size(); i++)
   {
 
-    vec[i].first = i;
-    cin >> vec[i].second;
+    vec[i].second = i;
+    cin >> vec[i].first;
   }
   sort(vec.begin(), vec.end());
-  cout << vec[0].first << endl;
+  cout << vec[0].first + 1 << endl;
 
   return 0;
 }
