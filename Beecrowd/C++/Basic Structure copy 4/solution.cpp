@@ -4,21 +4,18 @@ using namespace std;
 int main()
 {
 
-    int size ;
-    cin >> size ;
-    vector <pair<int , int >> vec(size); 
+  int size;
+  cin >> size;
+  vector<pair<int, int>> vec(size);
 
-    for (int  i = 0; i < vec.length; i++)
-    {
+  for (int i = 0; i < vec.length; i++)
+  {
 
-vec[i].first = i;
-cin >>  vec[i].second ; 
-
+    vec[i].first = i;
+    cin >> vec[i].second;
   }
-    
+  sort(vec.begin(), vec.end());
+  cout << vec[0].first << endl;
 
-
-
-
-    return 0;
+  return 0;
 }
