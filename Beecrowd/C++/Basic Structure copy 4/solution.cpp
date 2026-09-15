@@ -15,7 +15,7 @@ int main()
     cin >> vec[i].first;
   }
   sort(vec.begin(), vec.end());
-  cout << vec[0].first + 1 << endl;
+  cout << vec[0].second + 1 << endl;
 
   return 0;
 }
