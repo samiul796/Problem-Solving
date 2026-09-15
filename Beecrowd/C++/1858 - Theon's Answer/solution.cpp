@@ -19,3 +19,24 @@ int main()
 
   return 0;
 }
+
+// MORE EFFICIENT
+
+// int main()
+// {
+//   int n, x, mn = 21, ans = 1;
+//   cin >> n;
+
+//   for (int i = 1; i <= n; i++)
+//   {
+//     cin >> x;
+
+//     if (x < mn)
+//     {
+//       mn = x;
+//       ans = i;
+//     }
+//   }
+
+//   cout << ans << '\n';
+// }
